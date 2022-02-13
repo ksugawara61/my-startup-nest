@@ -22,6 +22,12 @@ $ yarn nest generate s cats
 $ yarn nest generate interface cats/interfaces/cat
 ```
 
+- Moduleの作成
+
+```
+$ yarn nest g module cats
+```
+
 ## ライブラリ
 
 | 名前 | URL | 用途 |
