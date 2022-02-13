@@ -1,5 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { CreateUserDto } from './dto/create-user.dto';
 import { UsersController } from './users.controller';
+import { UsersService } from './users.service';
 
 describe('UsersController', () => {
   let controller: UsersController;
@@ -7,6 +9,37 @@ describe('UsersController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UsersController],
+      providers: [
+        UsersService,
+        {
+          provide: UsersService,
+          useValue: {
+            create: jest
+              .fn()
+              .mockImplementation((user: CreateUserDto) =>
+                Promise.resolve({ id: '1', ...user }),
+              ),
+            findAll: jest.fn().mockResolvedValue([
+              {
+                firstName: 'firstName #1',
+                lastName: 'lastName #1',
+              },
+              {
+                firstName: 'firstName #2',
+                lastName: 'lastName #2',
+              },
+            ]),
+            findOne: jest.fn().mockImplementation((id: string) =>
+              Promise.resolve({
+                firstName: 'firstName #1',
+                lastName: 'lastName #1',
+                id,
+              }),
+            ),
+            remove: jest.fn(),
+          },
+        },
+      ],
     }).compile();
 
     controller = module.get<UsersController>(UsersController);
