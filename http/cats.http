@@ -5,6 +5,7 @@ POST {{base_url}}/cats
 Content-Type: application/json
 
 {
+  "id": 1,
   "name": "mike",
   "age": 3,
   "breed": "k2o"
@@ -12,3 +13,7 @@ Content-Type: application/json
 
 ###
 GET {{base_url}}/cats
+
+###
+@id = 1
+GET {{base_url}}/cats/{{id}}
