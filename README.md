@@ -15,3 +15,15 @@ $  yarn nest generate co cats
 ```
 $ yarn nest generate s cats
 ```
+
+- Interfaceの作成
+
+```
+$ yarn nest generate interface cats/interfaces/cat
+```
+
+## ライブラリ
+
+| 名前 | URL | 用途 |
+| :--- | :--- | :--- |
+| class-validator | https://github.com/typestack/class-validator | |
